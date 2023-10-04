@@ -6,7 +6,7 @@ import EventItem from "./EventItem.jsx";
 import { fetchEvents } from "../../util/http";
 
 export default function NewEventsSection() {
-  const { data, isPanding, isError, error } = useQuery({
+  const { data, isPending, isError, error } = useQuery({
     queryKey: ["events"],
     queryFn: fetchEvents,
     staleTime: 5000, // відповідає за затримку перед оновленням даних
@@ -15,7 +15,7 @@ export default function NewEventsSection() {
 
   let content;
 
-  if (isPanding) {
+  if (isPending) {
     content = <LoadingIndicator />;
   }
 
