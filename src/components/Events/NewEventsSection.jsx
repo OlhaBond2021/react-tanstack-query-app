@@ -7,8 +7,8 @@ import { fetchEvents } from "../../util/http";
 
 export default function NewEventsSection() {
   const { data, isPending, isError, error } = useQuery({
-    queryKey: ["events"],
-    queryFn: fetchEvents,
+    queryKey: ["events", { max: 3 }],
+    queryFn: ({ signal, queryKey }) => fetchEvents({ signal, ...queryKey[1] }),
     staleTime: 5000, // відповідає за затримку перед оновленням даних
     //  gcTime: 1000 // відповідає за час зберігання даних в кеш
   });
